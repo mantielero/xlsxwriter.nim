@@ -1,4 +1,4 @@
-import nimlibxlsxwriter/[xlsxwriter], strformat
+import nimlibxlsxwriter/[xlsxwriter], strformat, times
 import common
 
 proc setColumn*(ws:Worksheet, firstCol, lastCol:int, width:float, format:Format = nil) =
@@ -29,8 +29,17 @@ proc insertImage*(ws:Worksheet, row,col:int, filename:string) =
     raise newException(ValueError, &"Something went wrong in insertImage: {err.int}")  
 
 
-
-
+proc write*(ws:Worksheet, row, col:int,  dt:DateTime, format:Format = nil) =
+  let datetime = lxw_datetime( 
+    year: dt.year.cint,
+    month:dt.month.cint,
+    day: dt.monthday.cint,
+    hour: dt.hour.cint,
+    min: dt.minute.cint,
+    sec: dt.second.cdouble
+  )
+  let err:lxw_error = worksheet_write_datetime( ws, row.lxw_row_t, col.lxw_col_t,
+                            unsafeAddr datetime, format )
 #[
 
 proc worksheet_write_formula*(worksheet: ptr lxw_worksheet; row: lxw_row_t;
@@ -57,9 +66,7 @@ proc worksheet_write_dynamic_array_formula_num*(worksheet: ptr lxw_worksheet;
     last_col: lxw_col_t; formula: cstring; format: ptr lxw_format; result: cdouble): lxw_error 
     
     dynlib: dynlibWorksheet.}
-proc worksheet_write_datetime*(worksheet: ptr lxw_worksheet; row: lxw_row_t;
-                              col: lxw_col_t; datetime: ptr lxw_datetime;
-                              format: ptr lxw_format): lxw_error 
+
     
 proc worksheet_write_url*(worksheet: ptr lxw_worksheet; row: lxw_row_t;
                          col: lxw_col_t; url: cstring; format: ptr lxw_format): lxw_error 

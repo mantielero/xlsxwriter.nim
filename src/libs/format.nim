@@ -10,6 +10,9 @@ proc setItalic*(format:Format) =
   format_set_italic(format) 
 
 
+proc setNumFormat*(format:Format, numFormat:string) =
+  format_set_num_format(format, num_format) 
+
 proc setUnlocked*(format:Format) =
   format_set_unlocked(format) 
 
@@ -156,7 +159,7 @@ proc lxw_format_get_fill_key*(format: ptr lxw_format): ptr lxw_fill
 
 
 
-proc format_set_num_format*(format: ptr lxw_format; num_format: cstring) 
+
     
 proc format_set_num_format_index*(format: ptr lxw_format; index: uint8) 
 
