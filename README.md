@@ -34,3 +34,43 @@ main()
 ```
 produces:
 ![](https://i.imgur.com/OcHGzvV.png)
+
+# Installation
+## Nimgen
+You need this particular version: https://github.com/ThomasTJdev/nimgen/tree/supportBranches
+
+## Nimlibxlsxwriter
+You can download the repository from: https://github.com/ThomasTJdev/nimlibxlsxwriter
+
+Later you need to modify `nimlibxlsxwriter.cfg`:
+1. Add the `gitbranch` line:
+
+```ini
+[n.prepare]
+gitbranch = "main"
+gitremote = "https://github.com/jmcnamara/libxlsxwriter"
+gitsparse = """
+include/*
+include/xlsxwriter/*
+"""
+```
+2. Add the last two lines from the following:
+```ini
+[common.nim]
+search.tr = "import nimlibxlsxwriter/tree"
+append.tr = """
+
+import hash_table
+export hash_table.lxw_hash_table
+from format import lxw_format
+"""
+
+search.v = "LXW_PRINTF* = f"
+comment.v = 1
+```
+
+## Install xlsxwriter
+Download and then as usual:
+```
+nimble install
+```
