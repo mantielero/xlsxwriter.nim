@@ -36,7 +36,7 @@ proc write*(ws:Worksheet, row, col:int,  dt:DateTime, format:Format = nil) =
     day: dt.monthday.cint,
     hour: dt.hour.cint,
     min: dt.minute.cint,
-    sec: dt.second.cdouble
+    sec: (dt.second.cdouble + dt.nanosecond.cdouble / 1000000000.0 ).cdouble
   )
   let err:lxw_error = worksheet_write_datetime( ws, row.lxw_row_t, col.lxw_col_t,
                             unsafeAddr datetime, format )
