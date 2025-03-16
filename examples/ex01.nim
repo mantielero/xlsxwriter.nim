@@ -1,16 +1,30 @@
-import xlsxwriter, times
+import xlsxwriter
+import times
 
 proc main() =
   let wb = newWorkbook("prueba.xlsx")
-  defer: wb.close()
+  wb.addWorksheet("sheet1")
+  let ws = wb.addWorksheet("sheet2")
 
-  wb.addWorksheet("hola")
-  let ws = wb.addWorksheet("adiós")
+  let format = wb.addFormat()
+  format.setBold.setItalic.setFontColor(colorRed).setUnderline(underlineDouble).setFontStrikeout().setSuperScript()
+        .setAlignRight.setTextWrap
+        #.setFontOutline.setFontShadow
+        .setDiagType(LXW_DIAGONAL_BORDER_UP)
+        .setDiagBorder(LXW_BORDER_DOUBLE)
 
-  let format = wb.addFormat
-  format.setBold
+        .setBorder(LXW_BORDER_MEDIUM)
+        .setBorderColor(colorBlue)
 
-  ws.setColumn( 0, 0, 20 )
+        #.setBgColor(colorPink)
+        #.setFgColor(colorSilver)
+        #.setIndent(1)
+        .setTextWrap
+        .setShrink()
+        .setPattern(LXW_CHART_PATTERN_PERCENT_25)
+        .setRotation(45)
+
+  ws.setColumn( 0, 0, 30 )
 
   ws.write(0, 0, "Hello")  
   ws.write(1, 0, "Adiós", format)   
@@ -24,4 +38,8 @@ proc main() =
   
   ws.insertImage(1, 2, "logo.png")
   
+  let ws2 = wb["sheet1"]
+
+  wb.close()
+
 main()

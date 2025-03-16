@@ -1,3 +1,4 @@
-#import nimlibxlsxwriter/xlsxwriter, strformat
-import libs/[common,workbook,worksheet,format]
-export common,workbook,worksheet,format
+import xlsx/wrapper/xlsxwriter
+export xlsxwriter
+import xlsx/sugar/[workbook, worksheet, format, chart, chartsheet, color, underline]
+export workbook, worksheet, format, chart, chartsheet, color, underline
