@@ -3,7 +3,7 @@
 version     = "0.1.0"
 author      = "José María García Pérez"
 description = "Creation of XLSX files from Nim"
-license     = "BSD3"
+license     = "BSD 3-Clause License"
 skipDirs    = @["docs", "test", "examples"]
 srcDir      = "src"
 

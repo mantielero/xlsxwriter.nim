@@ -1,0 +1,12 @@
+
+
+# Nim's XLSX support
+Right now there are a number of libraries:
+- [nimxlsxwriter](https://github.com/KeepCoolWithCoolidge/nimlibxlsxwriter): 26stars, 7y (last commit). Using C bindings.
+  - [nimxlsxwriter fork](https://github.com/ThomasTJdev/nimlibxlsxwriter): 5 stars, 2y (last commit)
+  - [https://github.com/mantielero/xlsxwriter.nim](xlsxwriter.nim): I added some sugar
+
+- [xl](https://github.com/khchen/xl): 55stars, 1y (last commit) https://github.com/khchen/xl/issues/8 
+- https://github.com/ringabout/xlsx: 62 stars, 4m (last commit)
+- https://github.com/mashingan/excelin: 50 stars, 2y (last commit)
+
