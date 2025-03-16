@@ -1,5 +1,11 @@
 # XLSXwriter
-This library provides some sugar over [nimlibxlsxwriter](https://github.com/KeepCoolWithCoolidge/nimlibxlsxwriter) which provides bindings to [libxlsxwriter](https://github.com/jmcnamara/libxlsxwriter).
+Bindings based on Futhark for Nim programming language.
+
+## Install xlsxwriter
+As usual with Nim:
+```
+nimble install https://github.com/mantielero/xlsxwriter.nim
+```
 
 ## Example
 See the following example:
@@ -35,42 +41,16 @@ main()
 produces:
 ![](https://i.imgur.com/OcHGzvV.png)
 
-# Installation
-## Nimgen
-You need this particular version: https://github.com/ThomasTJdev/nimgen/tree/supportBranches
+# Nim's XLSX support
+## Pure Nim
 
-## Nimlibxlsxwriter
-You can download the repository from: https://github.com/ThomasTJdev/nimlibxlsxwriter
+- [xl](https://github.com/khchen/xl): 55stars, 1y (last commit) https://github.com/khchen/xl/issues/8 
+- https://github.com/ringabout/xlsx: 62 stars, 4m (last commit)
+- https://github.com/mashingan/excelin: 50 stars, 2y (last commit)
 
-Later you need to modify `nimlibxlsxwriter.cfg`:
-1. Add the `gitbranch` line:
+## Bindings to libxlsxwriter
+Right now there are a number of libraries:
+- [nimxlsxwriter](https://github.com/KeepCoolWithCoolidge/nimlibxlsxwriter): 26stars, 7y (last commit). Using C bindings.
+  - [nimxlsxwriter fork](https://github.com/ThomasTJdev/nimlibxlsxwriter): 5 stars, 2y (last commit)
 
-```ini
-[n.prepare]
-gitbranch = "main"
-gitremote = "https://github.com/jmcnamara/libxlsxwriter"
-gitsparse = """
-include/*
-include/xlsxwriter/*
-"""
-```
-2. Add the last two lines from the following:
-```ini
-[common.nim]
-search.tr = "import nimlibxlsxwriter/tree"
-append.tr = """
-
-import hash_table
-export hash_table.lxw_hash_table
-from format import lxw_format
-"""
-
-search.v = "LXW_PRINTF* = f"
-comment.v = 1
-```
-
-## Install xlsxwriter
-Download and then as usual:
-```
-nimble install
-```
+This library was just some sugar over `nimxlsxwriter`. But now it uses its own bindings based on Futhark.
